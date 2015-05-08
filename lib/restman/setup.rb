@@ -1,15 +1,15 @@
 #setup logger
-Restman::Log.create Restman::INFO[:name], Restman::INFO[:logfile]
+Restman::Log.create Restman::Info[:name], Restman::Info[:logfile]
 #setup DataMapper
-DataMapper::Logger.new(Restman::INFO[:logfile], :debug)
+DataMapper::Logger.new(Restman::Info[:logfile], :debug)
 
-if Restman::INFO[:db][:in_mem]
+if Restman::Info[:db][:in_mem]
 	DataMapper.setup(:default, 'sqlite::memory:')
 else
-	DataMapper.setup(:default, Restman::INFO[:db])
+	DataMapper.setup(:default, Restman::Info[:db])
 end
 #setup suckerpunch
-SuckerPunch.logger = Logger.new(Restman::INFO[:logfile])
+SuckerPunch.logger = Restman::Log.logger
 #setup fist_of_futy
 FistOfFury.configure do |config|
   config.utc = true 

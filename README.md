@@ -4,6 +4,11 @@ TODO: Write a gem description
 
 ## Installation
 
+requirements
+. libsqlite3-dev
+. libmysqlclient-dev
+. (lib)curl
+
 Add this line to your application's Gemfile:
 
 ```ruby

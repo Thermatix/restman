@@ -23,13 +23,19 @@ module Restman
   			end
 
   			def generate_job
-  				"#{self.name.capitalize} < Active_jobs
-  					set :base_uri, #{self.base_uri}
-  					set :endpoints, #{self.endpoints} 
-  					set :destination, #{self.destination}
-  					recurs { #{self.repetition}ly(#{self.times}) }
-  				end
-  				"
+  				{
+  					name: self.name.capitalize,
+  					uris: {
+  						base_uri: self.base_uri,
+  						endpoints: self.endpoints,
+  						destination: self.destination
+  					}
+  					recurs: {
+  						repetition: self.repetition,
+  						times: self.times
+  					}
+  				}
+
   			end
 		end
 	end

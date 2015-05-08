@@ -12,11 +12,13 @@ task :post_install do
 	      		exec <<-SCRIPT 
 	      		sudo apt-get install libsqlite3-dev
 	      		sudo apt-get install libmysqlclient-dev
+	      		sudo apt-get install curl
 	      		SCRIPT
 	      	else
 	      		exec <<-SCRIPT
 	      		sudo yum install sqlite-devel 
 	      		sudo yum install mysql-devel
+	      		sudo yum install curl
 	      		SCRIPT
 	      	end
 	      else
@@ -29,11 +31,13 @@ task :post_install do
 	   				exec <<-SCRIPT 
 	   				sudo brew install sqlite 
 	   				sudo brew install mysql
+	   				sudo brew curl
 	   				SCRIPT
 	   			else
 	   				exec <<-SCRIPT 
 	   				sudo port install sqlite3 
 	   				sudo port install mysql5
+	   				sudo port install curl
 	   				SCRIPT
 	   			end
 	   		else
@@ -44,5 +48,3 @@ task :post_install do
 	end
 
 end
-
-task default: :post_install
