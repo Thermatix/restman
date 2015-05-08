@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'restman/infomation'
 
 Gem::Specification.new do |spec|
-  spec.name          = "restman"
-  spec.version       = Restman::VERSION
-  spec.authors       = ["Thermatix"]
-  spec.email         = ["mbeckerwork@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.name          = Restman::Info[:name]
+  spec.version       = Restman::Info[:version]
+  spec.authors       = [Restman::Info[:author]]
+  spec.email         = [Restman::Info[:email]]
+  spec.summary       = Restman::Info[:summary]
+  spec.description   = Restman::Info[:description]
+  spec.homepage      = Restman::Info[:homepage]
+  spec.license       = Restman::Info[:licence]
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sucker_punch", "1.4.0"
   spec.add_runtime_dependency "fist_of_fury", "0.2.7"
   spec.add_runtime_dependency "datamapper", "1.2.0"
+  spec.add_runtime_dependency "json", "1.8.2"
 end

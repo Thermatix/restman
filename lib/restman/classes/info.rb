@@ -6,7 +6,23 @@ module Restman
 		end
 		
 		module Singleton_Methods
-			include Utils if defined? Utils 
+
+			def required list 
+				@required = list
+			end
+			
+			def check_for_required 
+				if @required 
+					@required.each do |key,type|
+						test = self[key]
+						klass = test.class
+						raise ArgumentError, "Expected #{key} to be set" unless test
+						if type 
+							raise TypeError, "Expected #{key} to be of type #{type}, got #{klass}" unless klass == type
+						end
+					end
+				end
+			end
 							
 			def [](key)
 				@store[key]
@@ -31,6 +47,9 @@ module Restman
 		def self.inherited(base)
 			base.instance_variable_set :@store, {}
 			base.extend Singleton_Methods
+			after_inherited do
+				base.check_for_required
+			end
 		end
 
 		def self.includes_hooks?
