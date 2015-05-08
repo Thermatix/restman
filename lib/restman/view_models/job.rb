@@ -1,0 +1,3 @@
+module RestMan
+
+end
