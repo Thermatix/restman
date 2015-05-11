@@ -16,3 +16,9 @@ FistOfFury.configure do |config|
 end
 
 FistOfFury.attack!
+
+Restman::Routes.define do
+	map :root, to: '/'
+end
+
+

@@ -1,26 +1,23 @@
 module Restman
 	module Active_jobs
 
-		self << class
+		class << self
 			attr_accessor :active
 		end
 
+		self.active ||= []
+
 		def self.create job
-			Object.const_set job[:name], Class.new(Base) do
+			self.active << Object.const_set(job[:name], Class.new(Base) do
 				job[:uris].each do |name,value|
 					set name, value
 				end
 				self.class_eval "recurs { #{job[:recurs][:repetition]}ly(#{job[:recurs][:times]}) }"
-			end
+			end)
 		end
 
 		class Base < Info_set
 
-
-			required { base_uri: String, endpoints: String, destination: String, credentials: Hash}
-
-  			self.active  ||= []
-  			
   			def perform
 
   				self[:endpoints].each do |endpoint|
@@ -30,9 +27,10 @@ module Restman
   			end
 
   			def self.inherited(base)
+  				base.required base_uri: String, endpoints: String, destination: String, credentials: Hash
   				base.include SuckerPunch::Job
 				base.include FistOfFury::Recurrent
-				Active_jobs.active << base
+				
 			end
 		end
 	end

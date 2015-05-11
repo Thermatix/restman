@@ -1,7 +1,7 @@
 module Restman
 	module Client
 		class Http
-			self << class
+			class << self
 				attr_accessor :curl
 			end
 

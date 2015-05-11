@@ -8,10 +8,12 @@ module Restman
 		module Singleton_Methods
 
 			def required list 
+				
 				@required = list
 			end
 			
 			def check_for_required 
+				puts @required
 				if @required 
 					@required.each do |key,type|
 						test = self[key]

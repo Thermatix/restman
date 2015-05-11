@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+LIB_ROOT = "#{File.expand_path('../lib',File.dirname(__FILE__))}"
+require 'slop'
+require "#{LIB_ROOT}/restman"
+require "#{LIB_ROOT}/restman/infomation"
+
+# opts = Slop::Options.new
+
+args = Slop.parse do |o|
+	o.banner = "usage: restman [options] start|stop"
+	o.on('-v','--version','prints version'){ puts Restman::Info[:version] }
+	o.string('-a', '--rake', 'runs rake tasks')
+	o.string('-c', '--command', 'runs a command')
+end
+
+case args[:command] 
+
+	when 'start'
+		Dir.chdir(LIB_ROOT) { system "rackup" }
+	when 'stop'
+
+end
+

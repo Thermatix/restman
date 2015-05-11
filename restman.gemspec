@@ -1,7 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require './lib/restman/'
 require 'restman/infomation'
+
 
 Gem::Specification.new do |spec|
   spec.name          = Restman::Info[:name]
@@ -11,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = Restman::Info[:summary]
   spec.description   = Restman::Info[:description]
   spec.homepage      = Restman::Info[:homepage]
-  spec.license       = Restman::Info[:licence]
+  spec.licenses      = Restman::Info[:license]
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -25,6 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sucker_punch", "1.4.0"
   spec.add_runtime_dependency "fist_of_fury", "0.2.7"
   spec.add_runtime_dependency "datamapper", "1.2.0"
+  spec.add_runtime_dependency "dm-sqlite-adapter", "1.2.0"
   spec.add_runtime_dependency "json", "1.8.2"
   spec.add_runtime_dependency "curb", "0.8.8"
+  spec.add_runtime_dependency "commander", "4.3.4"
 end

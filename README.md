@@ -7,7 +7,7 @@ TODO: Write a gem description
 requirements
 . libsqlite3-dev
 . libmysqlclient-dev
-. (lib)curl
+. libcurl4-gnutls-dev
 
 Add this line to your application's Gemfile:
 
