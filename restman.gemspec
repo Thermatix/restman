@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sinatra", "1.4.6"
   spec.add_runtime_dependency "sucker_punch", "1.4.0"
   spec.add_runtime_dependency "fist_of_fury", "0.2.7"
+  spec.add_runtime_dependency "dm-core", "1.2.0"
   spec.add_runtime_dependency "datamapper", "1.2.0"
   spec.add_runtime_dependency "dm-sqlite-adapter", "1.2.0"
   spec.add_runtime_dependency "json", "1.8.2"

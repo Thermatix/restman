@@ -9,11 +9,18 @@ module Restman
 			def get route
 				@routes[route]
 			end
+
+			def display
+				@routes.to_s
+			end
+
 		end
 
 		def map name,route
 			set_r(get_r.merge({ name => [route[:to],(route[:flags]||{})]}))
 		end
+
+
 
 		private
 

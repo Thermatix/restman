@@ -20,5 +20,5 @@ FistOfFury.attack!
 Restman::Routes.define do
 	map :root, to: '/'
 end
-
+puts Restman::Routes.display
 

@@ -1,6 +1,12 @@
 module Restman
 	module Models
-		class Jobs < Base
+		class Jobs
+
+        include ::DataMapper::Resource
+
+        property :id, Serial
+        property :created_at, DateTime
+        property :updated_at, DateTime
 			
   			property :name, String, required: true, lazy: [:desc]
   			property :description, Text, lazy: [:desc]
@@ -17,6 +23,8 @@ module Restman
   			property :times, Integer, default: 5, lazy: [:sched] 
   			property :repetition, Enum[:second,:minute,:hour,:day,:week,:month], required: true, default: :minute, lazy: [:sched] 
 
+        finalize
+        auto_migrate!
 
   			def self.active?
   				all(active: true)
