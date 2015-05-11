@@ -29,7 +29,7 @@ module Restman
   						base_uri: self.base_uri,
   						endpoints: self.endpoints,
   						destination: self.destination
-  					}
+  					},
   					recurs: {
   						repetition: self.repetition,
   						times: self.times
