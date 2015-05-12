@@ -1,4 +1,5 @@
-LOADING = [:base,:gems,:app]
-LOADING_FOR = :app
-load 'restman.rb'
-run Restman::App
+$Loading = [:base,:gems,:app]
+$Loading_for = :app
+puts File.expand_path('.')
+load './restman.rb'
+Rack::Handler::pick(['puma'])run Restman::App
