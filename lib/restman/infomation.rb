@@ -14,8 +14,14 @@ module Restman
 		set :homepage, ""
 		set :license, ["MIT"]
 
-			
-		set :logfile, '/var/log/restman.log'
+		set :root, "#{File.expand_path(File.dirname(__FILE__))}"
+
+		set :loggers, {
+			log_path: '/var/log/restman',
+			restman: '/var/log/restman/restman.log',
+			db: '/var/log/restman/db.log',
+			jobs: '/var/log/restman/jobs.log'
+		}
 		set :db, { 
 			in_mem: true,
 		    adapter:  'adapter_name_here',

@@ -1,7 +1,8 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
+$Loading = [:gems,:base]
+$Loading_for = :gemspec
 require './lib/restman/'
 require 'restman/infomation'
 
@@ -25,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
 
   spec.add_runtime_dependency "sinatra", "1.4.6"
+  spec.add_runtime_dependency "sinatra-formhelpers-ng", "1.9.0"
+  spec.add_runtime_dependency "puma", "2.11.2"
   spec.add_runtime_dependency "sucker_punch", "1.4.0"
   spec.add_runtime_dependency "fist_of_fury", "0.2.7"
   spec.add_runtime_dependency "dm-core", "1.2.0"
@@ -33,4 +36,10 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "json", "1.8.2"
   spec.add_runtime_dependency "curb", "0.8.8"
   spec.add_runtime_dependency "commander", "4.3.4"
+  spec.add_runtime_dependency "sinatra-contrib", "1.4.2"
+
+  #testing dependencies
+  spec.add_development_dependency "rack-test", "0.6.3"
+  spec.add_development_dependency "rspec", "3.1.0"
+  spec.add_development_dependency "fuubar", "2.0.0"
 end

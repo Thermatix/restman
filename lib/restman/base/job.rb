@@ -3,7 +3,6 @@ module Restman
 		class Base < Info_set
 
   			def perform
-
   				self[:endpoints].each do |endpoint|
   					data[endpoint.to_sym] = Client.HttP.get "#{self[:base_uri]}#{self[:endpoint]}"
   				end

@@ -23,9 +23,6 @@ module Restman
   			property :times, Integer, default: 5, lazy: [:sched] 
   			property :repetition, Enum[:second,:minute,:hour,:day,:week,:month], required: true, default: :minute, lazy: [:sched] 
 
-        finalize
-        auto_migrate!
-
   			def self.active?
   				all(active: true)
   			end
