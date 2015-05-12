@@ -2,7 +2,7 @@
 LIB_ROOT ||=  "#{File.expand_path(File.dirname(__FILE__))}"
 $Loaded ||=[]
 if $Loading.include?(:gems) and not $Loaded.include?(:gems)
-	puts "Loading external libaries for #{$Loading_for}"
+	puts "Loading external libraries for #{$Loading_for}"
 	#core
 	require "rubygems"
 	require 'fileutils'
@@ -14,8 +14,8 @@ if $Loading.include?(:gems) and not $Loaded.include?(:gems)
 	
 	#Sinatra pluguins
 	require 'sinatra/form_helpers'
-	# require 'sinatra/namespace'
-	# require 'sinatra/json'
+	require 'sinatra/namespace'
+	require 'sinatra/json'
 
 	#Data_Mapper plugins
 	require "dm-types"

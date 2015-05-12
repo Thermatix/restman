@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
 
   spec.add_runtime_dependency "sinatra", "1.4.6"
+  spec.add_runtime_dependency "tilt", "1.3"
   spec.add_runtime_dependency "sinatra-formhelpers-ng", "1.9.0"
   spec.add_runtime_dependency "puma", "2.11.2"
   spec.add_runtime_dependency "sucker_punch", "1.4.0"

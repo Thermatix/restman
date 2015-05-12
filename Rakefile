@@ -1,4 +1,4 @@
-require 'erb'
+# require 'erb'
 LIB_ROOT ||= "#{File.expand_path('.')}/lib/"
 $Loading = [:gems,:base]
 $Loading_for = :rake_tasks
