@@ -26,13 +26,23 @@ Restman::Assets.paths = [
 Restman::Assets.list = [
 	{
 		type: :js,
-		name: :jQuery,
+		name: :jquery,
 		paths: %w(/js/jQuery-v2.1.4.js)
+	},
+	{
+		type: :js,
+		name: :client,
+		paths: %w(/js/client.js)
 	},
 	{
 		type: :js,
 		name: :materialize,
 		paths: %w(/materialize/*.js /materialize/**/*.js)
+	},
+	{
+		type: :css,
+		name: :client,
+		paths: %w(/css/client.css)
 	},
 	{
 		type: :css,

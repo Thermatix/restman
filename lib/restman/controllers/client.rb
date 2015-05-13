@@ -6,11 +6,11 @@ module Restman
 		end
 
 		get :jobs do
-
+			erb :jobs, layout: false
 		end
 
 		get :new_jobs do
-
+			erb :new_jobs,layout: false
 		end
 
 		

@@ -2,7 +2,7 @@
 module Restman
 	class Info < Info_set
 
-		set :name, 'restman'
+		set :name, 'Restman'
 		set :version, "0.0.1"
 		set :author, "Martin Becker"
 		set :email, "mbeckerwork@gmail.com"

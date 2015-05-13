@@ -4,7 +4,7 @@
 			<a href="#" class="brand-logo"><%= logo %></a>
 			<ul id="nav_list" class="right hide-on-med-and-down">
 				<% navigation.each do |nav| %>
-					<li> <a href="#" data-Request="<%= url_for(nav[:request])%>" data-RenderTarget="view_port"><%= nav[:text] %></a></li>
+					<li> <a href="#" data-request="<%= url_for(nav[:request])%>" data-rendertarget="view_port"><%= nav[:text] %></a></li>
 				<% end %>
 			</ul>
 		</section>
