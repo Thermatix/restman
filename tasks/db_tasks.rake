@@ -1,6 +1,7 @@
 
 task :models do
-	Dir["#{LIB_ROOT}/restman/models/*.rb"].each { |file| load file}
+	require "#{$Lib_root}/restman/initializers/data_mapper"
+	Dir["#{$Lib_root}/restman/models/*.rb"].each { |file| load file}
 end
 
 namespace :db do

@@ -11,10 +11,10 @@ module Restman
 			points to pull infomation from and then to push them to a endpoint location
 		"
 
-		set :homepage, ""
+		set :homepage, "https://github.com/Thermatix/restman"
 		set :license, ["MIT"]
 
-		set :root, "#{File.expand_path(File.dirname(__FILE__))}"
+		set :root, "#{File.expand_path('.',File.dirname(__FILE__))}"
 
 		set :loggers, {
 			log_path: '/var/log/restman',

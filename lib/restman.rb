@@ -1,48 +1,53 @@
 #phase 1 loading, load base code
-LIB_ROOT ||=  "#{File.expand_path(File.dirname(__FILE__))}"
+$Lib_root ||=  "#{File.expand_path(File.dirname(__FILE__))}"
 $Loaded ||=[]
 if $Loading.include?(:gems) and not $Loaded.include?(:gems)
-	puts "Loading external libraries for #{$Loading_for}"
-	#core
+	#un-grouped
 	require "rubygems"
 	require 'fileutils'
 	require "json"
 	require "curb"
-	require "sinatra/base"
-	require "data_mapper"
-	require "sucker_punch"
+
 	
-	#Sinatra pluguins
+	#job-system
+	require "sucker_punch"
+	require 'fist_of_fury'
+
+	#sinatra
+	require "sinatra/base"
 	require 'sinatra/form_helpers'
-	require 'sinatra/namespace'
+	require 'sinatra/assetpack'
 	require 'sinatra/json'
 
-	#Data_Mapper plugins
+	#assets
+	require "yui/compressor"
+	require "sass"
+
+	#datamapper
+	require "data_mapper"
 	require "dm-types"
 	require 'dm-timestamps'
-
-	#Sucker_Punch plugins
-	require 'fist_of_fury'
 
 	$Loaded << :gems
 end
 
+
+
 if $Loading.include?(:base) and not $Loaded.include?(:base)
-	puts "Loading base code for #{$Loading_for}"
-	%w(patches classes ).each do |folder|		
-		Dir["#{LIB_ROOT}/restman/#{folder}/*.rb"].each { |file| load file}	
+	%w(patches classes_modules ).each do |folder|		
+		Dir["#{$Lib_root}/restman/#{folder}/*.rb"].each { |file| load file}
 	end
 	$Loaded << :base
 end
 
 
 if $Loading.include?(:app) and not $Loaded.include?(:app)
-	puts "Loading app code for #{$Loading_for}"
-	require "#{LIB_ROOT}/restman/infomation"
+	require "#{$Lib_root}/restman/infomation"
 	%w(initializers base models controllers helpers).each do |folder|
-		Dir["#{LIB_ROOT}/restman/#{folder}/*.rb"].each { |file| load file}
+		Dir["#{$Lib_root}/restman/#{folder}/*.rb"].each { |file| load file}
 	end
-	require "#{LIB_ROOT}/restman/app"
+	require "#{$Lib_root}/restman/app"
 	::DataMapper.finalize
 	$Loaded << :app
 end
+

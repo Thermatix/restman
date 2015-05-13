@@ -1,0 +1,1 @@
+Sass.load_paths << "#{$Lib_root}/restman/assets/css"

@@ -5,15 +5,10 @@ if defined? Sinatra::Base
 				[:get, :post, :put, :delete, :head, :options, :patch, :link, :unlink].each do |func_name|
 					define_method func_name do |path,opts={},&block|
 						if path.class == Symbol
-							super(Restman::Routes.get(path)[:uri],opts={}) do
-								block.call
-							end
+							super(Restman::Routes.get(path)[:uri],opts={},&block) #do
 						else
-							super(path,opts) do
-								block.call
-							end
-						end
-						
+							super(path,opts,&block)
+						end		
 					end
 				end
 			end

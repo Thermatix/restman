@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
-LIB_ROOT = "#{File.expand_path('../lib',File.dirname(__FILE__))}"
+$Lib_root = "#{File.expand_path('../lib',File.dirname(__FILE__))}"
 require 'slop'
 $Loading = [:base]
 $Loading_for = :executable
-require "#{LIB_ROOT}/restman"
-require "#{LIB_ROOT}/restman/infomation"
+require "#{$Lib_root}/restman"
+require "#{$Lib_root}/restman/infomation"
 
 # opts = Slop::Options.new
 
@@ -16,14 +16,14 @@ args = Slop.parse do |o|
 end
 
 if args[:rake]
-	Dir.chdir("#{LIB_ROOT}/..") { system "rake #{args[:rake]}" }
+	Dir.chdir("#{$Lib_root}/..") { system "rake #{args[:rake]}" }
 end
 
 
 
 case args[:command] 
 	when 'start'
-		Dir.chdir(LIB_ROOT) { system "rackup" }
+		Dir.chdir($Lib_root) { system "rackup" }
 	when 'stop'
 end
 

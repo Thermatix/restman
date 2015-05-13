@@ -1,5 +1,6 @@
 <section id="main">
-	<%= render partial: 'nav_bar' %>
+	<%= render partial: 'nav_bar', locals: {logo: 'RestMan',navigation: [{text: 'Jobs', request: :jobs},{text: 'New Job', request: :new_jobs}]} %>
 	<section id= "view_port"> 
 	</section>
 </section>
+

@@ -11,26 +11,26 @@ module Restman
 			end
 
 			def display
-				@routes.to_s
+				@routes
 			end
 
 		end
 
 		def initialize
-			@prefix = nil
+			@prefix = []
 		end
 
 		def namespace prefix
-			@prefix = prefix
+			@prefix << prefix
 			yield
-			@prefix = nil
+			@prefix.pop
 		end
 
 		def map name,route
 			set_r(get_r.merge({
 					name => {
 						uri: make_uri(route[:to]), 
-						flags: (route[:flags]||{}) 
+						flags: (route[:flags]||[]) 
 						}
 				}))
 		end
@@ -51,8 +51,8 @@ module Restman
 			end
 
 			def make_uri uri
-				if @prefix
-					"#{@prefix}/#{uri}"
+				if @prefix.first
+					"#{@prefix.join('')}#{uri}"
 				else
 				uri
 				end

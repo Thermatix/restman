@@ -6,7 +6,10 @@
   <meta name="description" content="<%= Info[:description]%>">
   <meta name="author" content= "<%= Info[:author] %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= render  partial: 'assets'%>
+  <%= css :materialize, :media => 'screen' %>
+
+  <%= js :jquery, :materialize %>
+
   
   <title><%= "#{Info[:Name]} Front End" %></title>
 </head>
