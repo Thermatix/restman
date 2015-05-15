@@ -5,15 +5,18 @@ module Restman
 			erb :client
 		end
 
-		get :jobs do
-			erb :jobs, layout: false
-		end
+		namespace :client do
 
-		get :new_jobs do
-			erb :new_jobs,layout: false
-		end
+			get :all_jobs do
+				@jobs = Jobs.all
+				erb :all_jobs, layout: false, locals: {jobs: @jobs}
+			end
 
-		
+			get :new_jobs do
+				erb :new_jobs,layout: false
+			end
+			
+		end
 
 	end
 end

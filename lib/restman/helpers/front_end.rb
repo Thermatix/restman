@@ -15,6 +15,17 @@ module Sinatra
 		      		::Restman::Routes.get(root.to_sym)[:uri]
 		      	end
 
+		      	def j_a?(active)
+		      		if active
+		      			"active"
+		      		else
+		      			"inactive"
+		      		end
+		      	end
+
+		      	def get_jobs(where=nil)
+		      		::Models::Jobs.all
+		      	end
 			 end
 		end
 	end

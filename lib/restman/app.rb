@@ -1,7 +1,7 @@
 
 module Restman
 	class App < ::Sinatra::Base
-
+		Jobs = Restman::Models::Jobs
 		Info = Restman::Info
 		configure  do
 			set :show_exceptions, true

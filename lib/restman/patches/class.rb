@@ -1,6 +1,6 @@
 module Restman
   module Patches
-    module Class_Patch
+    module Class
       def after_inherited child = nil, &blk
         line_class = nil
         set_trace_func(lambda do |event, file, line, id, binding, classname|
@@ -20,4 +20,4 @@ module Restman
     end
   end
 end
-Class.prepend Restman::Patches::Class_Patch
+Class.prepend Restman::Patches::Class

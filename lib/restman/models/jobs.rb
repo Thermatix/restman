@@ -40,8 +40,16 @@ module Restman
   						times: self.times
   					}
   				}
-
+          auto_migrate!
   			end
+
+        def to_json
+          %w(name description meta_infomation access_key access_secret base_uri endpoints destination times repetition).map(&:to_sym).inject({}) do |result,attrib|
+            data = self.send(attrib)
+            result[:attrib] = data if data
+            result
+          end
+        end
 		end
 	end
 end

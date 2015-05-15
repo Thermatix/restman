@@ -14,7 +14,7 @@ module Restman
 		set :homepage, "https://github.com/Thermatix/restman"
 		set :license, ["MIT"]
 
-		set :root, "#{File.expand_path('.',File.dirname(__FILE__))}"
+		set :root, File.expand_path('.',File.dirname(__FILE__))
 
 		set :loggers, {
 			log_path: '/var/log/restman',
@@ -23,13 +23,10 @@ module Restman
 			jobs: '/var/log/restman/jobs.log'
 		}
 		set :db, { 
-			in_mem: true,
-		    adapter:  'adapter_name_here',
-		    database: "path/to/repo",
-		    username: 'username',
-		    password: 'password',
-		    host:     'hostname'
+			in_mem: false,
+			connection: "sqlite://#{File.expand_path('../../db',File.dirname(__FILE__))}/restman.db"
 		}
+
 		# set :key generate_key
   	end
 end

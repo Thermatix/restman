@@ -1,0 +1,54 @@
+<li id="#job" data-jobid="<%= job.id %>">
+	<section id="header" class="collapsible-header" > <p id="name"><%= job.name %></p><p id="status"><%= j_a?(job.active) %></p></section>
+	<section  class="collapsible-body">
+		<table>
+			<thead>
+				<tr>
+					<th data-field="desc"> 
+						Description
+					</th>
+					<th data-field="meta">
+						Meta Infomation	
+					</th>
+					<th data-field="baseURI">
+						Base URL
+					</th>
+					<th data-field="end">
+						Endpoints
+					</th>
+					<th data-field="dest">
+						Destination
+					</th>
+					<th data-field="reps">
+						Repetition
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>
+						<%= job.desciption %>
+					</td>
+					<td>
+						<%= job.meta_infomation %>
+					</td>
+					<td>
+						<%= job.base_uri %>
+					</td>
+					<td>
+					<% job.endpoints.each do |endpoint| %>
+						- <%= endpoint %>
+					<% end %> 
+					</td>
+					<td>
+					<%= job.destination %>
+					</td>
+					<td>
+						<%= job.times%> per <%= job.repetition %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</li>

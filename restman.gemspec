@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-$Loading = [:base]
+$Loading = [:gems,:base]
 $Loading_for = :gemspec
 require './lib/restman/'
 require 'restman/infomation'
@@ -47,8 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "yui-compressor", "0.12.0"
 
   #DataMapper
-  spec.add_runtime_dependency "dm-core", "1.2.0"
-  spec.add_runtime_dependency "datamapper", "1.2.0"
+  spec.add_runtime_dependency "data_mapper", "1.2.0"
   spec.add_runtime_dependency "dm-sqlite-adapter", "1.2.0"
 
   #testing dependencies

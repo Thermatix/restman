@@ -1,6 +1,6 @@
 module Restman
 	module Patches
-		module String_Patch
+		module String
 			def constantize(class_name)
 			  unless /\A(?:::)?([A-Z]\w*(?:::[A-Z]\w*)*)\z/ =~ self
 			    raise NameError, "#{class_name.inspect} is not a valid constant name!"
@@ -12,4 +12,4 @@ module Restman
 		end
 	end
 end
-String.prepend Restman::Patches::String_Patch
+String.prepend Restman::Patches::String

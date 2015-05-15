@@ -1,7 +1,9 @@
 #phase 1 loading, load base code
 $Lib_root ||=  "#{File.expand_path(File.dirname(__FILE__))}"
 $Loaded ||=[]
+puts "loading for #{$Loading_for}"
 if $Loading.include?(:gems) and not $Loaded.include?(:gems)
+	puts 'loading libs'
 	#un-grouped
 	require "rubygems"
 	require 'fileutils'
@@ -34,6 +36,7 @@ end
 
 
 if $Loading.include?(:base) and not $Loaded.include?(:base)
+	puts 'loading base'
 	%w(patches classes_modules ).each do |folder|		
 		Dir["#{$Lib_root}/restman/#{folder}/*.rb"].each { |file| load file}
 	end
@@ -42,6 +45,7 @@ end
 
 
 if $Loading.include?(:app) and not $Loaded.include?(:app)
+	puts 'loading app'
 	require "#{$Lib_root}/restman/infomation"
 	%w(initializers base models controllers helpers).each do |folder|
 		Dir["#{$Lib_root}/restman/#{folder}/*.rb"].each { |file| load file}

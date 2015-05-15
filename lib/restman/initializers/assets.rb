@@ -32,7 +32,7 @@ Restman::Assets.list = [
 	{
 		type: :js,
 		name: :client,
-		paths: %w(/js/client.js)
+		paths: %w(/js/client_page_setup.js /js/client.js)
 	},
 	{
 		type: :js,

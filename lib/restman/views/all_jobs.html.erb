@@ -1,0 +1,16 @@
+<ul class="collapsible" data-collapsible"accordion">
+		<% if jobs.first %>
+			<% jobs.each do |job| %>
+				<%= render partial: 'job', locals: {job: job} %>
+			<% end %> 
+		<% else %>
+		<li >
+			<section id="header" class="collapsible-header active" > <p id="name">No active jobs</p></section>
+			<section  class="collapsible-body">
+				There are currently no active jobs.
+				You can create new jobs by creating selecting 'New Job from navigation bar along the top'
+			</section>
+		</li>
+		<% end %>
+</ul>
+

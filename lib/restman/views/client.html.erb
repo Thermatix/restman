@@ -1,6 +1,8 @@
 <section id="main">
-	<%= render partial: 'nav_bar', locals: {logo: Info[:name],navigation: [{text: 'Jobs', request: :jobs},{text: 'New Job', request: :new_jobs}]} %>
-	<section id= "view_port"> 
+	<%= render partial: 'nav_bar', locals: {logo: Info[:name],navigation: [{text: 'Jobs', request: :client_all_jobs},{text: 'New Job', request: :client_new_jobs}]} %>
+	<section id="view_port_padding"> 
+		<section id= "view_port"> 
+		</section>
 	</section>
 </section>
 

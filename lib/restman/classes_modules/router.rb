@@ -7,28 +7,38 @@ module Restman
 			end
 
 			def get route
-				@routes[route]
+				r = @routes[route]
+				if r
+					r
+				else
+					raise ArgumentError, "#{route.to_s} is not a valid route, please check routes with rake:routes" 
+				end
+
 			end
 
 			def display
-				@routes
+				@routes.sort
 			end
 
 		end
 
 		def initialize
 			@prefix = []
+			@namespace_name = []
 		end
 
-		def namespace prefix
+		def namespace prefix, name=nil
+			@namespace_name << name if name
 			@prefix << prefix
 			yield
-			@prefix.pop
+			@namespace_name.pop if name
+			@prefix.pop 
+
 		end
 
 		def map name,route
 			set_r(get_r.merge({
-					name => {
+					make_name(name) => {
 						uri: make_uri(route[:to]), 
 						flags: (route[:flags]||[]) 
 						}
@@ -54,7 +64,15 @@ module Restman
 				if @prefix.first
 					"#{@prefix.join('')}#{uri}"
 				else
-				uri
+					uri
+				end
+			end
+
+			def make_name name
+				if @namespace_name.first
+					"#{@namespace_name.join('_')}_#{name}".to_sym
+				else
+					name
 				end
 			end
 	end
