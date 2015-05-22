@@ -14,9 +14,10 @@ module Restman
 			get :new_jobs do
 				erb :new_jobs,layout: false
 			end
-			
+
 			namespace :modals do
 				namespace :job do
+
 					post :success do
 						content = <<-SUCC
 							#{@params[:message]}. 
@@ -24,12 +25,14 @@ module Restman
 						SUCC
 						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_success'}
 					end
+
 					post :failed do
 						content = <<-SUCC
 							#{@params[:message]}
 						SUCC
 						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_failed'}
 					end
+					
 				end
 			end
 			
