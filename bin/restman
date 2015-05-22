@@ -9,7 +9,7 @@ require "#{$Lib_root}/restman/infomation"
 # opts = Slop::Options.new
 
 args = Slop.parse do |o|
-	o.banner = "usage: restman [options] start|stop"
+	o.banner = "usage: restman [options] -c start|stop"
 	o.on('-v','--version','prints version'){ puts Restman::Info[:version] }
 	o.string('-a', '--rake', 'runs rake tasks')
 	o.string('-c', '--command', 'runs a command')

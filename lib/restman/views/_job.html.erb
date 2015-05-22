@@ -1,5 +1,5 @@
 <li id="#job" data-jobid="<%= job.id %>">
-	<section id="header" class="collapsible-header" > <p id="name"><%= job.name %></p><p id="status"><%= j_a?(job.active) %></p></section>
+	<section id="header" class="collapsible-header" > <section><p id="name"><%= job.name %></p><p id="status"><%# j_a?(job.active) %></p></section></section>
 	<section  class="collapsible-body">
 		<table>
 			<thead>
@@ -37,9 +37,11 @@
 						<%= "job.base_uri" %>
 					</td>
 					<td>
+					<ul>
 					<% job.endpoints.each do |endpoint| %>
-						- <%= endpoint %>
-					<% end %> 
+						<li> - <%= endpoint %> </li>
+					<% end %>
+					</ul> 
 					</td>
 					<td>
 					<%= job.destination %>

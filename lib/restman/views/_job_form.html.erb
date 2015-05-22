@@ -1,5 +1,5 @@
 <section class"row">
-	<%= form(url_for(:api_jobs), form_action, {class: "col s12"})%> 
+	<%= form(url_for(:api_jobs), form_action, {class: "col s12", id: "form", :"data-type" => "modal", :"data-target" => 'response_modal'})%> 
 	<% fieldset(:jobs) do |f| %>
 		<section class="row">
 			<section class="input-field col s6">
@@ -62,4 +62,20 @@
 		<%= submit('Create new job',{class: "waves-effect waves-light btn"}) %>
 		</section>
 	<% end %>
+</section>
+<section id="response_modal" class="modal">
+	<section class="modal-content">
+		<div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-red-only">
+		      <div class="circle-clipper left">
+		        <div class="circle"></div>
+		      </div><div class="gap-patch">
+		        <div class="circle"></div>
+		      </div><div class="circle-clipper right">
+		        <div class="circle"></div>
+		      </div>
+		    </div>
+  		</div>
+	</section>
+
 </section>

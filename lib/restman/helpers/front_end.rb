@@ -11,8 +11,15 @@ module Sinatra
 			        end
 		      	end
 
-		      	def url_for(root)
-		      		::Restman::Routes.get(root.to_sym)[:uri]
+		      	def url_for(root,args=nil)
+		      		route = ::Restman::Routes.get(root.to_sym)[:uri]
+		      		if args
+		      			route.gsub(/\:([a-zA-Z]*)/,"%{\\1}") % args #if any args are included then ALL  params for that route must be included
+			      	else
+			      		route.gsub(/\/\:[a-zA-Z]*/, "" ) #remove all traces of route params
+			      	end
+			      	 
+
 		      	end
 
 		      	def j_a?(active)

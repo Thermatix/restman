@@ -6,46 +6,51 @@ module Restman
 
 			#get job
 			get :jobs do
-				if get_params[:id]
-					@job = Jobs.where(id: get_params[:id])	
+				content_type :json
+				if get_job_params[:id]
+					@jobs = Jobs.where(id: get_job_params[:id])	
 				else
-					@job = Jobs.all
+					@jobs = Jobs.all
 				end
-				if @job
-					json_data @job.to_json
+				if @jobs
+					json_data @jobs.to_json,"#{@jobs.length} jobs successfully gotten" , {links:{modal: url_for(:client_modals_job_success)}}
 				else
-					json_error 'JobGetError', "There was a problem getting the job infomation"
+					json_error 'JobGetError', "There was a problem getting the job infomation", {links:{modal: url_for(:client_modals_job_failed)}}
 				end
 			end
 
 			#create job
 			post :jobs do
-				@job = Jobs.create(get_params)
+				content_type :json
+				@job = Jobs.create(get_job_params)
 				if @job.saved?
-					json_data @job.to_json
+					json_data @job.to_json, "#{@job.name} was successfully created" ,{links:{modal: url_for(:client_modals_job_success)}}
 				else
-					json_error 'JobCreateError', "There was a problem trying to create the job"
+					json_error 'JobCreateError', "There was a problem trying to create the job", {links:{modal: url_for(:client_modals_job_failed)}}
 				end
 			end
 
 			#update job
 			put :jobs do
-				@Jobs.update(get_params)
+				content_type :json
+				@Jobs.update(get_job_params)
 				if @jobs.saved?
-					json_data @job.to_json
+					json_data @job.to_json,"#{@job.name} was successfully updated", {links:{modal: url_for(:client_modals_job_success)}}
 				else
-					json_error 'JobUpdateError', "There was a problem trying to update the job"
+					json_error 'JobUpdateError', "There was a problem trying to update the job", {links:{modal: url_for(:client_modals_job_failed)}}
 				end
 			end
 
 			#destroy job
 
 			delete :jobs do
-				@job = Jobs.get(get_params[:id])
+				content_type :json
+				@job = Jobs.get(get_job_params[:id])
+				name = Job.name
 				if @job.destroy
-					json_success 'The job was successfully deleted'
+					json_success "#{name} was was successfully deleted", {links:{modal: url_for(:client_modals_job_success)}}
 				else
-					json_error 'JobDeleteError', 'There was a problem trying to delete the job '
+					json_error 'JobDeleteError', 'There was a problem trying to delete the job ', {links:{modal: url_for(:client_modals_job_failed)}}
 				end
 			end
 
@@ -60,13 +65,7 @@ module Restman
 
 		end
 
-		def get_params 
-			@job_params ||= %w(id name description meta_infomation access_key access_secret base_uri endpoints destination times repetition).inject({}) do |result,attrib|
-				result[attrib] = @params['jobs'][attrib] if @params['jobs'][attrib]
-				result
-			end
-
-		end
+		
 
 	end
 end

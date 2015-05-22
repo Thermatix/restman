@@ -1,8 +1,18 @@
 module Restman
 	module Models
 		class Jobs
-
+      attr_accessor :statics
         include ::DataMapper::Resource
+
+        def initialize attributes
+          super
+          self.statics = {
+            type: 'job',
+            id: self.id
+          }
+        end
+
+        
 
         property :id, Serial
         property :created_at, DateTime
@@ -46,11 +56,13 @@ module Restman
         def to_json
           %w(name description meta_infomation access_key access_secret base_uri endpoints destination times repetition).map(&:to_sym).inject({}) do |result,attrib|
             data = self.send(attrib)
-            result[:attrib] = data if data
+            result[:attributes] ||= {}
+            result[:attributes][attrib] = data if data
             result
-          end
+          end.merge(self.statics)
         end
 		end
 	end
 end
+
 
