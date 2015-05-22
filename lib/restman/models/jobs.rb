@@ -50,7 +50,7 @@ module Restman
   						times: self.times
   					}
   				}
-          auto_migrate!
+          
   			end
 
         def to_json
@@ -60,6 +60,10 @@ module Restman
             result[:attributes][attrib] = data if data
             result
           end.merge(self.statics)
+        end
+
+        unless DataMapper.repository(:default).adapter.storage_exists?('restman_models_jobs')
+          auto_migrate!
         end
 		end
 	end

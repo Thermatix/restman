@@ -16,7 +16,8 @@ module Sinatra
 		      		if args
 		      			route.gsub(/\:([a-zA-Z]*)/,"%{\\1}") % args #if any args are included then ALL  params for that route must be included
 			      	else
-			      		route.gsub(/\/\:[a-zA-Z]*/, "" ) #remove all traces of route params
+			      		# route.gsub(/\/\:[a-zA-Z]*/, "" ) #remove all traces of route params
+			      		route
 			      	end
 			      	 
 
