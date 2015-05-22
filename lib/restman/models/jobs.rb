@@ -12,16 +12,15 @@ module Restman
           }
         end
 
-        
-
         property :id, Serial
         property :created_at, DateTime
         property :updated_at, DateTime
+        property :active, Boolean, default: true
 			
   			property :name, String, required: true, lazy: [:desc]
   			property :description, Text, lazy: [:desc]
   			property :meta_infomation, Text, lazy: [:desc]
-  			property :active, Boolean, default: true
+  			
 
   			property :access_key, BCryptHash, required: true, lazy: [:creds] 
   			property :access_secret, BCryptHash, required: true, lazy: [:creds] 
@@ -56,14 +55,15 @@ module Restman
         def to_json
           %w(name description meta_infomation access_key access_secret base_uri endpoints destination times repetition).map(&:to_sym).inject({}) do |result,attrib|
             data = self.send(attrib)
-            result[:attributes] ||= {}
             result[:attributes][attrib] = data if data
             result
           end.merge(self.statics)
         end
 
-        unless DataMapper.repository(:default).adapter.storage_exists?('restman_models_jobs')
+        if DataMapper.repository(:default).adapter.storage_exists?('restman_models_jobs') == false
           auto_migrate!
+        else
+          auto_upgrade!
         end
 		end
 	end

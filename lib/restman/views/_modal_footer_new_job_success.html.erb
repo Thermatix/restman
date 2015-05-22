@@ -1,4 +1,5 @@
-<a href="#!" class="waves-effect waves-green btn-flat" data-request="<%= url_for(:client_all_jobs)%>" data-target="view_port" data-type="link">return to jobs</a>
-<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Create new job</a>
+<%= render partial: "modal_button_class"  %>
+<a href="#!" class="<%= button_class %>" data-request="<%= url_for(:client_all_jobs)%>" data-modTarget="view_port" data-type="link" data-target="<%= modal_target %>">return to jobs</a>
+<a href="#!" data-target="<%= modal_target %>" class="<%= button_class %>">Create new job</a>
 
 

@@ -19,18 +19,18 @@ module Restman
 				namespace :job do
 
 					post :success do
-						content = <<-SUCC
+						content = <<-CONTENT
 							#{@params[:message]}. 
 							You can continue to create a new job or go back to the Job Scheduler.
-						SUCC
-						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_success'}
+						CONTENT
+						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_success', modal_target: 'response_modal'}
 					end
 
 					post :failed do
-						content = <<-SUCC
+						content = <<-CONTENT
 							#{@params[:message]}
-						SUCC
-						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_failed'}
+						CONTENT
+						erb :modal, layout: false, locals: {content: content, modal_type: 'new_job_failed', modal_target: 'response_modal'}
 					end
 					
 				end
